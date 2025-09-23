@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WE Packages Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: "class" }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .radio-card input {
+      display: none;
+    }
+
+    .radio-card span {
+      display: block;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      background: #e5e7eb;
+      color: #111827;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .radio-card input:checked+span {
+      background: #000000;
+      color: white;
+      border-color: #e7e7e7;
+      transform: scale(1.05);
+    }
+
+   
+
+    .dark .radio-card input:checked+span {
+      background: #000000;
+      border-color: #000000;
+      color: white;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-white dark:bg-white-50 text-white-900 dark:text-white-100 min-h-screen flex flex-col items-center justify-center p-6 transition-colors duration-300">
+
+  <!-- Controls -->
+  <div class="w-full max-w-6xl p-6 rounded-2xl shadow bg-white dark:bg-white-800 mb-6 flex justify-between items-center">
+    <button id="toggleMode"
+      class="px-4 py-2 rounded-xl bg-white-50 text-gray-900 dark:bg-white dark:text-white-100 shadow">🌙 / ☀️</button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl">
+
+    <!-- Card 1: خيارات -->
+    <div class="p-6 rounded-2xl shadow bg-white dark:bg-white-800">
+      <h2 class="text-xl font-semibold mb-4">نوع الخدمة</h2>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <label class="radio-card"><input type="radio" name="service_type" value="internet"
+            checked><span>إنترنت</span></label>
+        <label class="radio-card"><input type="radio" name="service_type" value="landline"><span>أرضي</span></label>
+      </div>
+
+      <!-- فرع الإنترنت -->
+      <div id="internetOptions" class="mt-5">
+        <h2 class="text-xl font-semibold mb-2">نوع الإنترنت</h2>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <label class="radio-card"><input type="radio" name="internet_subtype" value="home"
+              checked><span>منزلي</span></label>
+          <label class="radio-card"><input type="radio" name="internet_subtype"
+              value="business"><span>تجاري</span></label>
+        </div>
+
+        <h2 class="text-xl font-semibold mb-2">نوع باقات الإنترنت</h2>
+        <div class="grid grid-cols-4 gap-3">
+          <label class="radio-card"><input type="radio" name="internet_type" value="super"><span>Super</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="mega"><span>Mega</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="ultra"><span>Ultra</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="Yearly"><span>Year</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="Sonic"><span>WE Sonic</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="MegaYear"><span>Mega
+              Year</span></label>
+          <label class="radio-card"><input type="radio" name="internet_type" value="UltraYear"><span>Ultra
+              Year</span></label>
+
+        </div>
+
+        <!-- باقات الإنترنت -->
+        <div id="superPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="130"><span>30G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="190"><span>100G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="210"><span>140G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="290"><span>200G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="360"><span>250G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="570"><span>400G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="850"><span>600G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="1360"><span>1TB</span></label>
+
+        </div>
+        <div id="megaPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="380"><span>140G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="530"><span>250G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="1040"><span>600G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="1560"><span>1TB</span></label>
+        </div>
+        <div id="ultraPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="550"><span>140G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="700"><span>250G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="1230"><span>600G</span></label>
+        </div>
+        <div id="YearlyPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="3960"><span>3000G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="6270"><span>4800G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="8925"><span>7200G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="13600"><span>12TB</span></label>
+        </div>
+        <div id="SonicPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="600"><span>GAMERZ</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="600"><span>STREAMERZ</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="1200"><span>PLUS</span></label>
+        </div>
+        <div id="MegaYearPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="5830"><span>3000G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="10920"><span>7200G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="15600"><span>12TB</span></label>
+        </div>
+        <div id="UltraYearPackages" class="internet-packages hidden grid grid-cols-4 gap-3 mt-4">
+          <label class="radio-card"><input type="radio" name="package" value="7700"><span>3000G</span></label>
+          <label class="radio-card"><input type="radio" name="package" value="12915"><span>7200G</span></label>
+        </div>
+        <!-- راوتر -->
+        <h2 class="text-xl font-semibold mt-4">راوتر</h2>
+        <div class="grid grid-cols-5 gap-3">
+          <label class="radio-card"><input type="radio" name="router" value="5"><span>5</span></label>
+          <label class="radio-card"><input type="radio" name="router" value="10"><span>10</span></label>
+          <label class="radio-card"><input type="radio" name="router" value="20"><span>20</span></label>
+          <label class="radio-card"><input type="radio" name="router" value="50"><span>50</span></label>
+          <label class="radio-card"><input type="radio" name="router" value="25"><span>ONT</span></label>
+
+        </div>
+        <!-- باقات إضافية -->
+        <h2 class="text-xl font-semibold mt-4">باقات إضافية</h2>
+        <div class="grid grid-cols-5 gap-3">
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="52"><span>20</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="105"><span>50</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="170"><span>100</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="420"><span>400</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="1625"><span>2000</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="10"><span>Salfny</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="75"><span>PS 150</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="150"><span>PS 300</span></label>
+          <label class="radio-card"><input type="checkbox" name="extra_package" value="30"><span>GAME40</span></label>
+
+
+        </div>
+
+        <!-- IP ثابت -->
+        <h2 class="text-xl font-semibold mt-4">IP ثابت</h2>
+        <div class="grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="ip" value="67"><span>OP 1</span></label>
+          <label class="radio-card"><input type="radio" name="ip" value="330"><span>OP 2</span></label>
+          <label class="radio-card"><input type="radio" name="ip" value="750"><span>OP 3</span></label>
+        </div>
+        <!-- خصم -->
+        <h2 class="text-xl font-semibold mt-4">خصم</h2>
+        <div class="grid grid-cols-4 gap-3">
+          <label class="radio-card"><input type="radio" name="discount_package" value="10"><span>10%</span></label>
+          <label class="radio-card"><input type="radio" name="discount_package" value="20"><span>20%</span></label>
+          <label class="radio-card"><input type="radio" name="discount_package" value="25"><span>25%</span></label>
+          <label class="radio-card"><input type="radio" name="discount_package" value="50"><span>50%</span></label>
+        </div>
+
+
+      </div>
+
+      <!-- فرع الأرضي -->
+      <!-- فرع الأرضي -->
+      <div id="landlineOptions" class="hidden mt-4">
+        <h2 class="text-xl font-semibold mb-2">نوع الأرضي</h2>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <label class="radio-card"><input type="radio" name="landline_subtype" value="home"
+              checked><span>منزلي</span></label>
+          <label class="radio-card"><input type="radio" name="landline_subtype"
+              value="business"><span>تجاري</span></label>
+        </div>
+
+        <!-- نوع الاشتراك -->
+        <h2 class="text-xl font-semibold mb-2">مدة الاشتراك</h2>
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <label class="radio-card"><input type="radio" name="landline_period" value="monthly"
+              checked><span>شهري</span></label>
+          <label class="radio-card"><input type="radio" name="landline_period" value="quarterly"><span>ربع
+              سنوي</span></label>
+          <label class="radio-card"><input type="radio" name="landline_period" value="yearly"><span>سنوي</span></label>
+        </div>
+
+        <!-- باقات منزلي شهري -->
+        <div id="landlineHome_monthly" class="landline-packages grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="35"><span>WE 35</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="45"><span>WE 45</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="75"><span>WE 75</span></label>
+        </div>
+
+        <!-- باقات منزلي ربع سنوي -->
+        <div id="landlineHome_quarterly" class="landline-packages hidden grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="105"><span>WE 35/kalami
+              35</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="135"><span>WE 45</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="225"><span>WE 75</span></label>
+        </div>
+
+        <!-- باقات منزلي سنوي -->
+        <div id="landlineHome_yearly" class="landline-packages hidden grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="420"><span>WE 35/kalami
+              35</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="540"><span>WE 45</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="900"><span>WE 75</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package"
+              value="260"><span>marhaban</span></label>
+        </div>
+
+        <!-- باقات تجاري شهري -->
+        <div id="landlineBusiness_monthly" class="landline-packages hidden grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="55"><span>WE 55</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="60"><span>WE 60</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="85"><span>WE 85</span></label>
+        </div>
+
+        <!-- باقات تجاري ربع سنوي -->
+        <div id="landlineBusiness_quarterly" class="landline-packages hidden grid grid-cols-3 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="165"><span>WE 55</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="180."><span>WE 60</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="255"><span>WE 85</span></label>
+        </div>
+
+        <!-- باقات تجاري سنوي -->
+        <div id="landlineBusiness_yearly" class="landline-packages hidden grid grid-cols-2 gap-3">
+          <label class="radio-card"><input type="radio" name="landline_package" value="660"><span>WE 55</span></label>
+          <label class="radio-card"><input type="radio" name="landline_package" value="720"><span>WE 60</span></label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Card 2: Summary -->
+    <div class="p-6 rounded-2xl shadow bg-white dark:bg-white-800">
+      <div class="flex justify-between items-center">
+        <button id="resetBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+          <i class="fas fa-rotate-left"></i> Reset
+        </button>
+      </div>
+
+      <!-- خصم -->
+      <div class="mb-4">
+        <h2 class="text-lg font-semibold mb-2">خصم</h2>
+        <input id="discount" type="number" placeholder="EGP"
+          class="w-full p-2 rounded border dark:bg-white-700 dark:border-white-600">
+      </div>
+
+      <!-- Summary Section -->
+      <div class="border-t pt-4 space-y-2" id="summarySection">
+        <div class="flex justify-between">
+          <span id="priceNoTax" class="text-gray-800 font-semibold">EGP 0.00</span>
+          <span class="font-bold text-lg">غير شامل الضريبة</span>
+        </div>
+        <div class="flex justify-between">
+          <span id="priceWithVAT" class="text-green-400 font-semibold">EGP 0.00</span>
+          <span class="font-bold text-lg">شامل الضريبة</span>
+        </div>
+        <div class="flex justify-between">
+          <span id="priceWithFee2" class="font-semibold">EGP 0.00</span>
+          <span id="priceWithFee" class="font-bold text-lg"> شامل سعر مع مكيانات دفع </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dark mode toggle
+    document.getElementById("toggleMode").addEventListener("click", () => {
+      document.documentElement.classList.toggle("white");
+    });
+
+    // الإنترنت Sections
+    const internetSections = {
+      super: document.getElementById('superPackages'),
+      mega: document.getElementById('megaPackages'),
+      ultra: document.getElementById('ultraPackages'),
+      Yearly: document.getElementById('YearlyPackages'),
+      Sonic: document.getElementById('SonicPackages'),
+      MegaYear: document.getElementById('MegaYearPackages'),
+      UltraYear: document.getElementById('UltraYearPackages'),
+
+
+    };
+    function updateLandlinePackages() {
+      // اخفاء الكل
+      document.querySelectorAll('.landline-packages').forEach(sec => sec.classList.add('hidden'));
+
+      const subtype = document.querySelector('input[name="landline_subtype"]:checked')?.value;
+      const period = document.querySelector('input[name="landline_period"]:checked')?.value;
+
+      const targetId = `landline${subtype === "home" ? "Home" : "Business"}_${period}`;
+      const section = document.getElementById(targetId);
+      if (section) section.classList.remove("hidden");
+    }
+
+    // event listeners
+    document.querySelectorAll('input[name="landline_subtype"], input[name="landline_period"]').forEach(r =>
+      r.addEventListener('change', updateLandlinePackages)
+    );
+
+
+    function updateInternetPackages() {
+      Object.values(internetSections).forEach(sec => sec.classList.add('hidden'));
+      const sel = document.querySelector('input[name="internet_type"]:checked')?.value;
+      if (sel && internetSections[sel]) internetSections[sel].classList.remove('hidden');
+    }
+    document.querySelectorAll('input[name="internet_type"]').forEach(r => r.addEventListener('change', updateInternetPackages));
+
+    // Service Type toggle
+    function updateServiceType() {
+      const type = document.querySelector('input[name="service_type"]:checked')?.value;
+      if (type === "internet") {
+        document.getElementById("internetOptions").classList.remove("hidden");
+        document.getElementById("landlineOptions").classList.add("hidden");
+      } else {
+        document.getElementById("internetOptions").classList.add("hidden");
+        document.getElementById("landlineOptions").classList.remove("hidden");
+      }
+      updateSummary();
+    }
+    document.querySelectorAll('input[name="service_type"]').forEach(r => r.addEventListener('change', updateServiceType));
+
+    // Summary
+    const priceNoTax = document.getElementById('priceNoTax');
+    const priceWithVAT = document.getElementById('priceWithVAT');
+    const priceWithFee = document.getElementById('priceWithFee');
+
+
+    const priceWithFee2 = document.getElementById('priceWithFee2');
+    // خصم (radio)
+     
+   
+    function updateSummary() {
+
+
+      let base = 0;
+      const serviceType = document.querySelector('input[name="service_type"]:checked')?.value;
+
+      if (serviceType === "internet") {
+        const selected = document.querySelector('input[name="package"]:checked');
+        base = selected ? parseFloat(selected.value) : 0;
+      } else if (serviceType === "landline") {
+        const selected = document.querySelector('input[name="landline_package"]:checked');
+        base = selected ? parseFloat(selected.value) : 0;
+      }
+
+
+      // إضافات
+      let addons = 0;
+      document.querySelectorAll('input[name="router"]:checked').forEach(r => addons += parseFloat(r.value));
+      document.querySelectorAll('input[name="ip"]:checked').forEach(ip => addons += parseFloat(ip.value));
+      document.querySelectorAll('input[name="extra_package"]:checked').forEach(ex => addons += parseFloat(ex.value));
+
+      let subtotal = base;
+
+      // خصم (يسمح بالسالب)
+      const discount = parseFloat(document.getElementById("discount")?.value || 0);
+      // خصم (radio)
+      let discountValue = 0;
+      const selectedDiscount = document.querySelector('input[name="discount_package"]:checked');
+      if (selectedDiscount) {
+        discountValue = parseFloat(selectedDiscount.value);
+      }
+      const discountAmount = (base) * (discountValue / 100);
+      subtotal = subtotal - discountAmount;
+
+      let total = subtotal;
+      subtotal = subtotal - discount;
+
+      if (serviceType === "internet") {
+        const subtype = document.querySelector('input[name="internet_subtype"]:checked')?.value;
+        if (subtype === "home") {
+
+          total = (subtotal + addons) * 1.14; // منزلي 14%
+          totalext = subtotal + addons;
+          priceNoTax.textContent = `EGP ${totalext.toFixed(2)}`;
+          priceWithVAT.textContent = `EGP ${total.toFixed(2)}`;
+
+        } else if (subtype === "business") {
+          subtotal2 = (total * 1.025) - discount;
+          total = ((subtotal2 + addons) * 1.14); // تجاري 2.5%
+          subtotal2 += addons;
+          // رسوم مكيانات دفع
+          let paymentFee = 0;
+          let totalWithFee = total;
+          if (total === 0) { totalWithFee += 0; paymentFee = 0; }
+          else if (total < 199) { totalWithFee += 7; paymentFee = 7; }
+          else if (total <= 350) { totalWithFee += 10; paymentFee = 10; }
+          else if (total <= 499) { totalWithFee += 12; paymentFee = 12; }
+          else { totalWithFee += 17; paymentFee = 17; }
+
+          priceNoTax.textContent = `EGP ${subtotal2.toFixed(2)}`;
+          priceWithVAT.textContent = `EGP ${total.toFixed(2)}`;
+          priceWithFee2.textContent = `EGP ${totalWithFee.toFixed(2)}`;
+          priceWithFee.textContent = `${paymentFee.toFixed(2)} خدمه مكاينات الدفع مع سعر باقه `;
+
+        }
+      } else if (serviceType === "landline") {
+        total = subtotal * 1.14; // أرضي 14%
+        let paymentFee = 0;
+        let totalWithFee = total;
+        if (total === 0) { totalWithFee += 0; paymentFee = 0; }
+        else if (total < 199) { totalWithFee += 7; paymentFee = 7; }
+        else if (total <= 350) { totalWithFee += 10; paymentFee = 10; }
+        else if (total <= 499) { totalWithFee += 12; paymentFee = 12; }
+        else { totalWithFee += 17; paymentFee = 17; }
+        priceNoTax.textContent = `EGP ${subtotal.toFixed(2)}`;
+        priceWithVAT.textContent = `EGP ${total.toFixed(2)}`;
+        priceWithFee2.textContent = `EGP ${totalWithFee.toFixed(2)}`;
+        priceWithFee.textContent = `${paymentFee.toFixed(2)} خدمه مكاينات الدفع مع سعر باقه `;
+
+      }
+      // رسوم مكيانات دفع
+      let paymentFee = 0;
+      let totalWithFee = total;
+      if (total === 0) { totalWithFee += 0; paymentFee = 0; }
+      else if (total < 199) { totalWithFee += 7; paymentFee = 7; }
+      else if (total <= 350) { totalWithFee += 10; paymentFee = 10; }
+      else if (total <= 499) { totalWithFee += 12; paymentFee = 12; }
+      else { totalWithFee += 17; paymentFee = 17; }
+
+
+      // تحديث العرضpriceNoTax.textContent = `EGP ${subtotal.toFixed(2)}`;
+
+
+      priceWithFee2.textContent = `EGP ${totalWithFee.toFixed(2)}`;
+      priceWithFee.textContent = `${paymentFee.toFixed(2)} خدمه مكاينات الدفع مع سعر باقه `;
+    }
+
+    document.querySelectorAll('input, #discount').forEach(i => i.addEventListener('input', updateSummary));
+
+    // Reset
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.querySelectorAll('input').forEach(i => i.checked = false);
+      document.getElementById("discount").value = "";
+      document.querySelector('input[name="service_type"][value="internet"]').checked = true;
+      document.querySelector('input[name="internet_subtype"][value="home"]').checked = true;
+      document.querySelector('input[name="service_type"][value="internet"]').checked = true;
+      document.querySelector('input[name="internet_subtype"][value="home"]').checked = true;
+      updateServiceType();
+      updateInternetPackages();
+      updateLandlinePackages();
+      updateSummary();
+    });
+
+
+    // Init
+    updateServiceType();
+    updateInternetPackages();
+    updateLandlinePackages();
+    updateSummary();
+  </script>
+
+</body>
+
+</html>
